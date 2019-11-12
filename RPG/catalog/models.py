@@ -34,7 +34,7 @@ class Skill(models.Model):
     multiplier = models.IntegerField(default=0)
 
 class Entity(models.Model):
-    skill_name = models.ManyToManyField(Skill, related_name = '%(class)s_skill_name', through = 'Skill_%(class)s')
+    skills = models.ManyToManyField('Skill')
     race = models.ForeignKey(Race, on_delete=models.CASCADE)
     statistics = models.ForeignKey(Statistics, on_delete=models.CASCADE)
     condition = models.ForeignKey(Condition, on_delete=models.CASCADE)
@@ -46,10 +46,6 @@ class Entity(models.Model):
     sex = models.CharField(max_length=8)
     class Meta:
         abstract = True
-
-class EntitySkill(models.Model):
-    entity = models.ForeignKey(Entity, on_delete=models.CASCADE)
-    skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
 
 class Npc(Entity):
     class Meta(Entity.Meta):
