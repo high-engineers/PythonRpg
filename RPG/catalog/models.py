@@ -9,6 +9,8 @@ class Race(models.Model):
     name = models.CharField(max_length=32)
     description = models.CharField(max_length=2048)
     backstory = models.CharField(max_length=2048)
+    class Meta:
+        db_table = 'Race'
 
 class Statistics(models.Model):
     strength = models.IntegerField(default=0)
@@ -17,6 +19,8 @@ class Statistics(models.Model):
     wisdom = models.IntegerField(default=0)
     luck = models.IntegerField(default=0)
     charisma = models.IntegerField(default=0)
+    class Meta:
+        db_table = 'Statistics'
 
 class Condition(models.Model):
     health = models.IntegerField(default=0)
@@ -25,6 +29,8 @@ class Condition(models.Model):
     max_mana = models.IntegerField(default=0)
     experience = models.IntegerField(default=0)
     max_experience = models.IntegerField(default=0)
+    class Meta:
+        db_table = 'Condition'
 
 class Skill(models.Model):
     name = models.CharField(max_length=32)
@@ -32,6 +38,8 @@ class Skill(models.Model):
     mana_cost = models.IntegerField(default=0)
     damage = models.IntegerField(default=0)
     multiplier = models.IntegerField(default=0)
+    class Meta:
+        db_table = 'Skill'
 
 class Entity(models.Model):
     skills = models.ManyToManyField('Skill')
@@ -45,18 +53,20 @@ class Entity(models.Model):
     quote = models.CharField(max_length=256)
     sex = models.CharField(max_length=8)
     class Meta:
-        abstract = True
+        db_table = 'Entity'
 
 class Npc(Entity):
-    class Meta(Entity.Meta):
-        db_table = 'npc'
+    class Meta:
+        db_table = 'Npc'
 
 class Character(Entity):
-    class Meta(Entity.Meta):
-        db_table = 'character'
+    class Meta:
+        db_table = 'Character'
 
 class User(models.Model):
     character = models.ForeignKey(Character, on_delete=models.CASCADE)
     login = models.CharField(max_length=32)
     password = models.CharField(max_length=32)
     email = models.CharField(max_length=64)
+    class Meta:
+        db_table = 'User'

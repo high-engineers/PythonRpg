@@ -40,19 +40,19 @@
         <li class="table"><a href="#auth_user">auth_user</a></li>
         <li class="table"><a href="#auth_user_groups">auth_user_groups</a></li>
         <li class="table"><a href="#auth_user_user_permissions">auth_user_user_permissions</a></li>
-        <li class="table"><a href="#catalog_condition">catalog_condition</a></li>
-        <li class="table"><a href="#catalog_race">catalog_race</a></li>
-        <li class="table"><a href="#catalog_skill">catalog_skill</a></li>
-        <li class="table"><a href="#catalog_statistics">catalog_statistics</a></li>
-        <li class="table"><a href="#catalog_user">catalog_user</a></li>
-        <li class="table"><a href="#character">character</a></li>
-        <li class="table"><a href="#character_skills">character_skills</a></li>
+        <li class="table"><a href="#Character">Character</a></li>
+        <li class="table"><a href="#Condition">Condition</a></li>
         <li class="table"><a href="#django_admin_log">django_admin_log</a></li>
         <li class="table"><a href="#django_content_type">django_content_type</a></li>
         <li class="table"><a href="#django_migrations">django_migrations</a></li>
         <li class="table"><a href="#django_session">django_session</a></li>
-        <li class="table"><a href="#npc">npc</a></li>
-        <li class="table"><a href="#npc_skills">npc_skills</a></li>
+        <li class="table"><a href="#Entity">Entity</a></li>
+        <li class="table"><a href="#Entity_skills">Entity_skills</a></li>
+        <li class="table"><a href="#Npc">Npc</a></li>
+        <li class="table"><a href="#Race">Race</a></li>
+        <li class="table"><a href="#Skill">Skill</a></li>
+        <li class="table"><a href="#Statistics">Statistics</a></li>
+        <li class="table"><a href="#User">User</a></li>
       </ul>
     </div>
     <div class="table">
@@ -77,11 +77,11 @@
           </tr>
           <tr>
             <td class="type">DatabaseSize</td>
-            <td class="type">196 KB</td>
+            <td class="type">184 KB</td>
           </tr>
           <tr>
             <td class="type">Created</td>
-            <td class="type">11/12/2019 12:30 AM</td>
+            <td class="type">11/12/2019 9:46 AM</td>
           </tr>
         </tbody>
       </table>
@@ -346,7 +346,7 @@
       </table>
     </div>
     <div class="table">
-      <h2 id="catalog_condition"><a href="#toc" class="tocref">⇧</a>Table catalog_condition</h2>
+      <h2 id="Character"><a href="#toc" class="tocref">⇧</a>Table Character</h2>
       <table>
         <thead>
           <tr>
@@ -358,7 +358,28 @@
         </thead>
         <tbody>
           <tr>
-            <th><span class="pk" title="PRIMARY KEY sqlite_master_PK_catalog_condition">◆</span>id</th>
+            <th><span class="pk" title="PRIMARY KEY sqlite_master_PK_Character">◆</span>entity_ptr_id</th>
+            <td class="type">bigint</td>
+            <td class="null">☐</td>
+            <td><span class="flag">IDENTITY (1,1)</span><span class="flag" title="FK_Character_0_0">⇨ <a href="#Entity">Entity</a>.id</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table">
+      <h2 id="Condition"><a href="#toc" class="tocref">⇧</a>Table Condition</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:30ex">Name</th>
+            <th style="width:20ex">Type</th>
+            <th style="width:4ex">NULL</th>
+            <th>Comment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><span class="pk" title="PRIMARY KEY sqlite_master_PK_Condition">◆</span>id</th>
             <td class="type">bigint</td>
             <td class="null">☐</td>
             <td><span class="flag">IDENTITY (1,1)</span></td>
@@ -404,329 +425,6 @@
             <td class="null">☐</td>
             <td>
             </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="table">
-      <h2 id="catalog_race"><a href="#toc" class="tocref">⇧</a>Table catalog_race</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width:30ex">Name</th>
-            <th style="width:20ex">Type</th>
-            <th style="width:4ex">NULL</th>
-            <th>Comment</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th><span class="pk" title="PRIMARY KEY sqlite_master_PK_catalog_race">◆</span>id</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td><span class="flag">IDENTITY (1,1)</span></td>
-          </tr>
-          <tr>
-            <th>name</th>
-            <td class="type">nvarchar (32)</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>description</th>
-            <td class="type">nvarchar (2048)</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>backstory</th>
-            <td class="type">nvarchar (2048)</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="table">
-      <h2 id="catalog_skill"><a href="#toc" class="tocref">⇧</a>Table catalog_skill</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width:30ex">Name</th>
-            <th style="width:20ex">Type</th>
-            <th style="width:4ex">NULL</th>
-            <th>Comment</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th><span class="pk" title="PRIMARY KEY sqlite_master_PK_catalog_skill">◆</span>id</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td><span class="flag">IDENTITY (1,1)</span></td>
-          </tr>
-          <tr>
-            <th>name</th>
-            <td class="type">nvarchar (32)</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>description</th>
-            <td class="type">nvarchar (2048)</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>mana_cost</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>damage</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>multiplier</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="table">
-      <h2 id="catalog_statistics"><a href="#toc" class="tocref">⇧</a>Table catalog_statistics</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width:30ex">Name</th>
-            <th style="width:20ex">Type</th>
-            <th style="width:4ex">NULL</th>
-            <th>Comment</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th><span class="pk" title="PRIMARY KEY sqlite_master_PK_catalog_statistics">◆</span>id</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td><span class="flag">IDENTITY (1,1)</span></td>
-          </tr>
-          <tr>
-            <th>strength</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>dexterity</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>inteligence</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>wisdom</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>luck</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>charisma</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="table">
-      <h2 id="catalog_user"><a href="#toc" class="tocref">⇧</a>Table catalog_user</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width:30ex">Name</th>
-            <th style="width:20ex">Type</th>
-            <th style="width:4ex">NULL</th>
-            <th>Comment</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th><span class="pk" title="PRIMARY KEY sqlite_master_PK_catalog_user">◆</span>id</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td><span class="flag">IDENTITY (1,1)</span></td>
-          </tr>
-          <tr>
-            <th>login</th>
-            <td class="type">nvarchar (32)</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>password</th>
-            <td class="type">nvarchar (32)</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>email</th>
-            <td class="type">nvarchar (64)</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>character_id</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td><span class="flag" title="FK_catalog_user_0_0">⇨ <a href="#character">character</a>.id</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="table">
-      <h2 id="character"><a href="#toc" class="tocref">⇧</a>Table character</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width:30ex">Name</th>
-            <th style="width:20ex">Type</th>
-            <th style="width:4ex">NULL</th>
-            <th>Comment</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th><span class="pk" title="PRIMARY KEY sqlite_master_PK_character">◆</span>id</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td><span class="flag">IDENTITY (1,1)</span></td>
-          </tr>
-          <tr>
-            <th>name</th>
-            <td class="type">nvarchar (32)</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>age</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>level</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>story</th>
-            <td class="type">nvarchar (2048)</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>quote</th>
-            <td class="type">nvarchar (256)</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>sex</th>
-            <td class="type">nvarchar (8)</td>
-            <td class="null">☐</td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <th>condition_id</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td><span class="flag" title="FK_character_2_0">⇨ <a href="#catalog_condition">catalog_condition</a>.id</span></td>
-          </tr>
-          <tr>
-            <th>race_id</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td><span class="flag" title="FK_character_1_0">⇨ <a href="#catalog_race">catalog_race</a>.id</span></td>
-          </tr>
-          <tr>
-            <th>statistics_id</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td><span class="flag" title="FK_character_0_0">⇨ <a href="#catalog_statistics">catalog_statistics</a>.id</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="table">
-      <h2 id="character_skills"><a href="#toc" class="tocref">⇧</a>Table character_skills</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width:30ex">Name</th>
-            <th style="width:20ex">Type</th>
-            <th style="width:4ex">NULL</th>
-            <th>Comment</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th><span class="pk" title="PRIMARY KEY sqlite_master_PK_character_skills">◆</span>id</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td><span class="flag">IDENTITY (1,1)</span></td>
-          </tr>
-          <tr>
-            <th>character_id</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td><span class="flag" title="FK_character_skills_1_0">⇨ <a href="#character">character</a>.id</span></td>
-          </tr>
-          <tr>
-            <th>skill_id</th>
-            <td class="type">bigint</td>
-            <td class="null">☐</td>
-            <td><span class="flag" title="FK_character_skills_0_0">⇨ <a href="#catalog_skill">catalog_skill</a>.id</span></td>
           </tr>
         </tbody>
       </table>
@@ -913,7 +611,7 @@
       </table>
     </div>
     <div class="table">
-      <h2 id="npc"><a href="#toc" class="tocref">⇧</a>Table npc</h2>
+      <h2 id="Entity"><a href="#toc" class="tocref">⇧</a>Table Entity</h2>
       <table>
         <thead>
           <tr>
@@ -925,7 +623,7 @@
         </thead>
         <tbody>
           <tr>
-            <th><span class="pk" title="PRIMARY KEY sqlite_master_PK_npc">◆</span>id</th>
+            <th><span class="pk" title="PRIMARY KEY sqlite_master_PK_Entity">◆</span>id</th>
             <td class="type">bigint</td>
             <td class="null">☐</td>
             <td><span class="flag">IDENTITY (1,1)</span></td>
@@ -976,25 +674,25 @@
             <th>condition_id</th>
             <td class="type">bigint</td>
             <td class="null">☐</td>
-            <td><span class="flag" title="FK_npc_2_0">⇨ <a href="#catalog_condition">catalog_condition</a>.id</span></td>
+            <td><span class="flag" title="FK_Entity_2_0">⇨ <a href="#Condition">Condition</a>.id</span></td>
           </tr>
           <tr>
             <th>race_id</th>
             <td class="type">bigint</td>
             <td class="null">☐</td>
-            <td><span class="flag" title="FK_npc_1_0">⇨ <a href="#catalog_race">catalog_race</a>.id</span></td>
+            <td><span class="flag" title="FK_Entity_1_0">⇨ <a href="#Race">Race</a>.id</span></td>
           </tr>
           <tr>
             <th>statistics_id</th>
             <td class="type">bigint</td>
             <td class="null">☐</td>
-            <td><span class="flag" title="FK_npc_0_0">⇨ <a href="#catalog_statistics">catalog_statistics</a>.id</span></td>
+            <td><span class="flag" title="FK_Entity_0_0">⇨ <a href="#Statistics">Statistics</a>.id</span></td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="table">
-      <h2 id="npc_skills"><a href="#toc" class="tocref">⇧</a>Table npc_skills</h2>
+      <h2 id="Entity_skills"><a href="#toc" class="tocref">⇧</a>Table Entity_skills</h2>
       <table>
         <thead>
           <tr>
@@ -1006,28 +704,258 @@
         </thead>
         <tbody>
           <tr>
-            <th><span class="pk" title="PRIMARY KEY sqlite_master_PK_npc_skills">◆</span>id</th>
+            <th><span class="pk" title="PRIMARY KEY sqlite_master_PK_Entity_skills">◆</span>id</th>
             <td class="type">bigint</td>
             <td class="null">☐</td>
             <td><span class="flag">IDENTITY (1,1)</span></td>
           </tr>
           <tr>
-            <th>npc_id</th>
+            <th>entity_id</th>
             <td class="type">bigint</td>
             <td class="null">☐</td>
-            <td><span class="flag" title="FK_npc_skills_1_0">⇨ <a href="#npc">npc</a>.id</span></td>
+            <td><span class="flag" title="FK_Entity_skills_1_0">⇨ <a href="#Entity">Entity</a>.id</span></td>
           </tr>
           <tr>
             <th>skill_id</th>
             <td class="type">bigint</td>
             <td class="null">☐</td>
-            <td><span class="flag" title="FK_npc_skills_0_0">⇨ <a href="#catalog_skill">catalog_skill</a>.id</span></td>
+            <td><span class="flag" title="FK_Entity_skills_0_0">⇨ <a href="#Skill">Skill</a>.id</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table">
+      <h2 id="Npc"><a href="#toc" class="tocref">⇧</a>Table Npc</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:30ex">Name</th>
+            <th style="width:20ex">Type</th>
+            <th style="width:4ex">NULL</th>
+            <th>Comment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><span class="pk" title="PRIMARY KEY sqlite_master_PK_Npc">◆</span>entity_ptr_id</th>
+            <td class="type">bigint</td>
+            <td class="null">☐</td>
+            <td><span class="flag">IDENTITY (1,1)</span><span class="flag" title="FK_Npc_0_0">⇨ <a href="#Entity">Entity</a>.id</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table">
+      <h2 id="Race"><a href="#toc" class="tocref">⇧</a>Table Race</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:30ex">Name</th>
+            <th style="width:20ex">Type</th>
+            <th style="width:4ex">NULL</th>
+            <th>Comment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><span class="pk" title="PRIMARY KEY sqlite_master_PK_Race">◆</span>id</th>
+            <td class="type">bigint</td>
+            <td class="null">☐</td>
+            <td><span class="flag">IDENTITY (1,1)</span></td>
+          </tr>
+          <tr>
+            <th>name</th>
+            <td class="type">nvarchar (32)</td>
+            <td class="null">☐</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <th>description</th>
+            <td class="type">nvarchar (2048)</td>
+            <td class="null">☐</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <th>backstory</th>
+            <td class="type">nvarchar (2048)</td>
+            <td class="null">☐</td>
+            <td>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table">
+      <h2 id="Skill"><a href="#toc" class="tocref">⇧</a>Table Skill</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:30ex">Name</th>
+            <th style="width:20ex">Type</th>
+            <th style="width:4ex">NULL</th>
+            <th>Comment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><span class="pk" title="PRIMARY KEY sqlite_master_PK_Skill">◆</span>id</th>
+            <td class="type">bigint</td>
+            <td class="null">☐</td>
+            <td><span class="flag">IDENTITY (1,1)</span></td>
+          </tr>
+          <tr>
+            <th>name</th>
+            <td class="type">nvarchar (32)</td>
+            <td class="null">☐</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <th>description</th>
+            <td class="type">nvarchar (2048)</td>
+            <td class="null">☐</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <th>mana_cost</th>
+            <td class="type">bigint</td>
+            <td class="null">☐</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <th>damage</th>
+            <td class="type">bigint</td>
+            <td class="null">☐</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <th>multiplier</th>
+            <td class="type">bigint</td>
+            <td class="null">☐</td>
+            <td>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table">
+      <h2 id="Statistics"><a href="#toc" class="tocref">⇧</a>Table Statistics</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:30ex">Name</th>
+            <th style="width:20ex">Type</th>
+            <th style="width:4ex">NULL</th>
+            <th>Comment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><span class="pk" title="PRIMARY KEY sqlite_master_PK_Statistics">◆</span>id</th>
+            <td class="type">bigint</td>
+            <td class="null">☐</td>
+            <td><span class="flag">IDENTITY (1,1)</span></td>
+          </tr>
+          <tr>
+            <th>strength</th>
+            <td class="type">bigint</td>
+            <td class="null">☐</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <th>dexterity</th>
+            <td class="type">bigint</td>
+            <td class="null">☐</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <th>inteligence</th>
+            <td class="type">bigint</td>
+            <td class="null">☐</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <th>wisdom</th>
+            <td class="type">bigint</td>
+            <td class="null">☐</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <th>luck</th>
+            <td class="type">bigint</td>
+            <td class="null">☐</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <th>charisma</th>
+            <td class="type">bigint</td>
+            <td class="null">☐</td>
+            <td>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table">
+      <h2 id="User"><a href="#toc" class="tocref">⇧</a>Table User</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:30ex">Name</th>
+            <th style="width:20ex">Type</th>
+            <th style="width:4ex">NULL</th>
+            <th>Comment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><span class="pk" title="PRIMARY KEY sqlite_master_PK_User">◆</span>id</th>
+            <td class="type">bigint</td>
+            <td class="null">☐</td>
+            <td><span class="flag">IDENTITY (1,1)</span></td>
+          </tr>
+          <tr>
+            <th>login</th>
+            <td class="type">nvarchar (32)</td>
+            <td class="null">☐</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <th>password</th>
+            <td class="type">nvarchar (32)</td>
+            <td class="null">☐</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <th>email</th>
+            <td class="type">nvarchar (64)</td>
+            <td class="null">☐</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <th>character_id</th>
+            <td class="type">bigint</td>
+            <td class="null">☐</td>
+            <td><span class="flag" title="FK_User_0_0">⇨ <a href="#Character">Character</a>.entity_ptr_id</span></td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="footer">
                     Generated by <a href="http://SqlDbDoc.codeplex.com/">DB&gt;doc</a> and <a href="https://github.com/ErikEJ/SqlCeToolbox">SQL Server Compact/SQLite Toolbox</a> on
-                    November 12, 2019, 08:25:57</div>
+                    November 12, 2019, 08:46:41</div>
   </body>
 </html>
