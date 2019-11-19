@@ -1,0 +1,46 @@
+<form action="{% url 'addCharacter' %}">
+    <input type="text" name="name" value="{{character.name}}">
+    <br> Name:
+    <br>
+    <input type="text" name="age" value="{{character.age}}">
+    <br> Age:
+    <br>
+    <div class="form-group">
+        <select class="form-control" name="race" value="{{character.race}}">
+            {% for race in races_list %}
+            <option>{{race.name}}</option>
+            {% endfor %}
+        </select>
+        <br> Race:
+    </div>
+    <br>
+    <input type="text" name="sex" value="{{character.sex}}">
+    <br> Sex:
+    <br>
+    <input type="text" name="strength" value="{{character.strength}}">
+    <br> Strength:
+    <br>
+    <input type="text" name="dexterity" value="{{character.dexterity}}">
+    <br> Dexterity:
+    <br>
+    <input type="text" name="intelligence" value="{{character.intelligence}}">
+    <br> Intelligence:
+    <br>
+    <input type="text" name="wisdom" value="{{character.wisdom}}">
+    <br> Wisdom:
+    <br>
+    <input type="text" name="luck" value="{{character.luck}}">
+    <br> Luck:
+    <br>
+    <input type="text" name="charisma" value="{{character.charisma}}">
+    <br> Charisma:
+    <br>
+    <input type="text" name="quote" value="{{character.quote}}">
+    <br> Quote:
+    <br>
+    <input type="text" name="story" value="{{character.story}}">
+    <br> Story:
+    <br>
+    <br>
+    <input type="submit" value="+">
+</form>
