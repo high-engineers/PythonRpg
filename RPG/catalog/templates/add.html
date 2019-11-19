@@ -1,46 +1,79 @@
-<form action="{% url 'addCharacter' %}">
-    <input type="text" name="name" value="{{character.name}}">
-    <br> Name:
-    <br>
-    <input type="text" name="age" value="{{character.age}}">
-    <br> Age:
-    <br>
-    <div class="form-group">
-        <select class="form-control" name="race" value="{{character.race}}">
-            {% for race in races_list %}
-            <option>{{race.name}}</option>
-            {% endfor %}
-        </select>
-        <br> Race:
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <title>Characters</title>
+</head>
+
+<body>
+    <div class="container d-flex justify-content-center">
+        <div class="col-3 text-center">
+            <form action="{% url 'addCharacter' %}">
+                <input type="text" class="form-control" name="name">
+                <br> Name
+                <br>
+                <br>
+                <input type="text" class="form-control" name="age">
+                <br> Age
+                <br>
+                <br>
+                <div class="form-group">
+                    <select class="form-control" name="race">
+                        {% for race in races_list %}
+                        <option>{{race.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <br> Race
+                </div>
+                <br>
+                <div class="form-group">
+                        <select class="form-control" name="sex">
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                        <br> Sex
+                    </div>
+                <br>
+                <input type="text" class="form-control" name="strength">
+                <br> Strength
+                <br>
+                <br>
+                <input type="text" class="form-control" name="dexterity">
+                <br> Dexterity
+                <br>
+                <br>
+                <input type="text" class="form-control" name="intelligence">
+                <br> Intelligence
+                <br>
+                <br>
+                <input type="text" class="form-control" name="wisdom">
+                <br> Wisdom
+                <br>
+                <br>
+                <input type="text" class="form-control" name="luck">
+                <br> Luck
+                <br>
+                <br>
+                <input type="text" class="form-control" name="charisma">
+                <br> Charisma
+                <br>
+                <br>
+                <textarea type="text" class="form-control" rows="2" name="quote"></textarea>
+                <br> Quote
+                <br>
+                <br>
+                <textarea type="text" class="form-control" rows="3" name="story"></textarea>
+                <br> Story
+                <br>
+                <br>
+                <input class="btn btn-secondary" type="submit" value="+">
+            </form>
+        </div>
     </div>
-    <br>
-    <input type="text" name="sex" value="{{character.sex}}">
-    <br> Sex:
-    <br>
-    <input type="text" name="strength" value="{{character.strength}}">
-    <br> Strength:
-    <br>
-    <input type="text" name="dexterity" value="{{character.dexterity}}">
-    <br> Dexterity:
-    <br>
-    <input type="text" name="intelligence" value="{{character.intelligence}}">
-    <br> Intelligence:
-    <br>
-    <input type="text" name="wisdom" value="{{character.wisdom}}">
-    <br> Wisdom:
-    <br>
-    <input type="text" name="luck" value="{{character.luck}}">
-    <br> Luck:
-    <br>
-    <input type="text" name="charisma" value="{{character.charisma}}">
-    <br> Charisma:
-    <br>
-    <input type="text" name="quote" value="{{character.quote}}">
-    <br> Quote:
-    <br>
-    <input type="text" name="story" value="{{character.story}}">
-    <br> Story:
-    <br>
-    <br>
-    <input type="submit" value="+">
-</form>
+</body>
+<html>

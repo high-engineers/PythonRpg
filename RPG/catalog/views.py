@@ -10,7 +10,7 @@ from django.http import HttpResponse
 from catalog.models import Character, Entity, Race, Statistics, Condition
 
 def index(request):
-    characters_list = Character.objects.all()
+    characters_list = Entity.objects.all()
     return render(request, 'index.html', {
         'characters_list': characters_list,
     })
@@ -29,11 +29,13 @@ def addCharacter(request):
     statistics = Statistics.objects.create(
         strength = strength,
         dexterity = request.POST.get('dexterity'),
-        intelligence = intelligence,
+        inteligence = intelligence,
         wisdom = request.POST.get('wisdom'),
         luck = request.POST.get('luck'),
         charisma = request.POST.get('charisma')
     )
+
+    statistics.save()
 
     condition = Condition.objects.create(
         health = strength * 2,
@@ -43,6 +45,8 @@ def addCharacter(request):
         experience = 0,
         max_experience = 100
     )
+    
+    condition.save()
     
     race_name = request.POST.get('race')
 
@@ -59,4 +63,26 @@ def addCharacter(request):
         statistics_id = statistics.id,
         condition_id = condition.id
     )
+
+    entity.save()
+
+    character = Character.objects.create(
+        entity_ptr_id = entity.id
+    )
+
+    character.save()
+
     return redirect('index')
+
+def characterDetails(request, id):
+    character = Entity.objects.get(id = id)
+    race = Race.objects.get(id = entity.race_id)
+    condition = Condition.objects.get(id = entity.condition_id)
+    statistics = Statistics.objects.get(id = entity.statistics_id)
+
+    return render(request, 'character-details.html', {
+        'character': character,
+        'race': race,
+        'condition': condition,
+        'statistics': statistics,
+    })
