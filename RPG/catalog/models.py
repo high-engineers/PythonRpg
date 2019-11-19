@@ -55,13 +55,15 @@ class Entity(models.Model):
     class Meta:
         db_table = 'Entity'
 
-class Npc(Entity):
+class Npc(Entity, models.Model):
     class Meta:
         db_table = 'Npc'
 
-class Character(Entity):
+class Character(Entity, models.Model):
     class Meta:
         db_table = 'Character'
+    def __str__(self):
+        return 'xd'
 
 class User(models.Model):
     character = models.ForeignKey(Character, on_delete=models.CASCADE)
