@@ -12,7 +12,7 @@ from catalog.models import Character, Entity, Race, Statistics, Condition
 def index(request):
     characters_list = Entity.objects.all()
     return render(request, 'index.html', {
-        'characters_list': characters_list,
+        'character_list': characters_list,
     })
 
 def add(request):
@@ -74,15 +74,17 @@ def addCharacter(request):
 
     return redirect('index')
 
-def characterDetails(request, id):
-    character = Entity.objects.get(id = id)
+def characterDetails(request, pk):
+    entity = Entity.objects.get(id = pk)
     race = Race.objects.get(id = entity.race_id)
     condition = Condition.objects.get(id = entity.condition_id)
     statistics = Statistics.objects.get(id = entity.statistics_id)
 
     return render(request, 'character-details.html', {
-        'character': character,
+        'character': entity,
         'race': race,
         'condition': condition,
         'statistics': statistics,
     })
+def addSkill(request, characterId):
+    return render(request, 'add-skill.html')
