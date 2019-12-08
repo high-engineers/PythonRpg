@@ -13,63 +13,53 @@
 <body>
     <div class="container d-flex justify-content-center">
         <div class="col-3 text-center">
-            <form action="{% url 'addCharacter' %}">
-                <input type="text" class="form-control" name="name">
+            <form action="{% url 'addCharacter' %}" method="post">
                 <br> Name
-                <br>
-                <br>
-                <input type="text" class="form-control" name="age">
+                <input type="text" class="form-control" name="name">
+
                 <br> Age
-                <br>
-                <br>
+                <input type="text" class="form-control" name="age" id="age">
+                
+                <br> Race
                 <div class="form-group">
-                    <select class="form-control" name="race">
+                    <select class="form-control" name="race" id="race">
                         {% for race in races_list %}
-                        <option>{{race.name}}</option>
+                        <option value="{{race.id}}">{{race.name}}</option>
                         {% endfor %}
                     </select>
-                    <br> Race
                 </div>
-                <br>
+
+                <br> Sex
                 <div class="form-group">
-                        <select class="form-control" name="sex">
+                        <select class="form-control" name="sex" id="sex">
                             <option>Male</option>
                             <option>Female</option>
                         </select>
-                        <br> Sex
-                    </div>
-                <br>
-                <input type="text" class="form-control" name="strength">
+                </div>
+
                 <br> Strength
-                <br>
-                <br>
-                <input type="text" class="form-control" name="dexterity">
+                <input type="text" class="form-control" name="strength" id="strength">
+
                 <br> Dexterity
-                <br>
-                <br>
-                <input type="text" class="form-control" name="intelligence">
+                <input type="text" class="form-control" name="dexterity" id="dexterity">
+
                 <br> Intelligence
-                <br>
-                <br>
-                <input type="text" class="form-control" name="wisdom">
+                <input type="text" class="form-control" name="intelligence" id="intelligence">
+                
                 <br> Wisdom
-                <br>
-                <br>
-                <input type="text" class="form-control" name="luck">
+                <input type="text" class="form-control" name="wisdom" id="wisdom">
+                
                 <br> Luck
-                <br>
-                <br>
-                <input type="text" class="form-control" name="charisma">
+                <input type="text" class="form-control" name="luck" id="luck">
+                
                 <br> Charisma
-                <br>
-                <br>
-                <textarea type="text" class="form-control" rows="2" name="quote"></textarea>
+                <input type="text" class="form-control" name="charisma" id="charisma">
+                
                 <br> Quote
-                <br>
-                <br>
-                <textarea type="text" class="form-control" rows="3" name="story"></textarea>
+                <textarea type="text" class="form-control" rows="2" name="quote" id="quote"></textarea>
+
                 <br> Story
-                <br>
+                <textarea type="text" class="form-control" rows="3" name="story" id="story"></textarea>
                 <br>
                 <input class="btn btn-secondary" type="submit" value="+">
             </form>

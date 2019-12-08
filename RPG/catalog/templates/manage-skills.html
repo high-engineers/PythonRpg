@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+            crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'catalog/style.css' %}">
+        <title>Add skill</title>
+    </head>
+    <body>
+        <div class="container">
+            {% comment %} <div class="col-md-4" style="float: left;" id="skills-available-container">
+                {% for skill in available_skills %}
+                <div id="{{skill.id}}" class="skill-row-available">
+                    <p>{{skill.name}}</p>
+                </div>
+                {%endfor%}
+            </div>
+            <div class="col-md-4" style="float: left; text-align:center;"> 
+                <button class="btn btn-primary" id="left-to-right-button"> > </button> 
+                <br/>
+                <br/>
+                <button class="btn btn-primary" id="right-to-left-button"> < </button>
+            </div>
+            <div class="col-md-4" style="float: left;" id="skills-assigned-container">
+                {% for skill in character_skills %}
+                <div id="{{skill.id}}" class="skill-row-assigned">
+                    <p>{{skill.name}}</p>
+                </div>
+                {%endfor%}
+            </div> {% endcomment %}
+            {% comment %} <form action="{% url 'assign-skills' %}" method="post">
+
+                <input type="text" id="twojaStara">
+                <input type="submit" class="btn btn-secondary" value="OK" />
+                
+                   
+              
+            </form> {% endcomment %}
+            <form action="{% url 'assign-skills' %}" method="post">
+                <label for="your_name">Your name: </label>
+                <input id="your_name" type="text" name="your_name" value="XD">
+                <input type="submit" value="OK" id="ok-button">
+            </form>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            $('.skill-row-available').click(function()
+            {
+                $(this).toggleClass("clicked");
+            });
+            $('.skill-row-assigned').click(function()
+            {
+                $(this).toggleClass("clicked");
+            });
+
+            $("#left-to-right-button").click(function()
+            {
+                var toAdd = $(".skill-row-available.clicked");
+                console.log('To add: ' + toAdd);
+                var skillsAssigned = $("#skills-assigned-container");
+                console.log(skillsAssigned);
+
+                toAdd.removeClass("skill-row-available").addClass("skill-row-assigned").removeClass("clicked");
+                skillsAssigned.append(toAdd);
+            });
+
+            $("#right-to-left-button").click(function()
+            {
+                var toAdd = $(".skill-row-assigned.clicked");
+                console.log('To add: ' + toAdd);
+                var skillsAvailable = $("#skills-available-container");
+                console.log(skillsAvailable);
+
+                toAdd.removeClass("skill-row-assigned").addClass("skill-row-available").removeClass("clicked");
+                skillsAvailable.append(toAdd);
+            });
+            
+            /* $("#ok-button").click(function(e)
+            {
+                {% comment %} var idsTable = [];
+                $('.skill-row-assigned').each(function()
+                {
+                    var $this = $(this);
+                    idsTable.push($this.attr('id'));
+                });
+                console.log(idsTable);
+                var characterId = "{{character_id}}";
+                console.log("MEINE: " + characterId); {% endcomment %}
+                var postData = {
+                    your_name: "Twoja stara"
+                };
+                console.log(JSON.stringify(postData));
+                $.ajax({
+                    type: "POST",
+                    url:'{% url "assign-skills" %}',
+                    data: JSON.stringify(postData),
+                    dataType: "json"
+                    content-type: "application/json"
+                });
+                
+            }); */
+        });
+    </script>
+
+<html>

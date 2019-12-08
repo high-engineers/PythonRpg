@@ -1,4 +1,8 @@
 
 .base-table-row { margin-top: 200px;}
-.add-redirect {margin-left: auto; margin-right: auto; width: 200px; background-color:#e3ded1; text-align: center; border-radius: 10px; margin-top: 100px;}
+.add-redirect {margin-left: auto; margin-right: auto; width: 200px; background-color:#e3ded1; text-align: center; border-radius: 10px; margin-top: 30px;}
 .row-clickable:hover {background-color: #e3ded1; cursor: pointer;}
+.skill-row-assigned{border-radius: 10px; border: solid grey; margin-bottom: 10px; padding: 5px;}
+.skill-row-available{border-radius: 10px; border: solid grey; margin-bottom: 10px; padding: 5px;}
+
+.clicked{background-color: lightgray;}

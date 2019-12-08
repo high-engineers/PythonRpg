@@ -6,85 +6,136 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.http import HttpResponse
+from .forms import *
 
-from catalog.models import Character, Entity, Race, Statistics, Condition
+from catalog.models import Character, Entity, Race, Statistics, Condition, Skill
+from django.db import transaction
 
 def index(request):
-    characters_list = Entity.objects.all()
+    character_list = Entity.objects.all()
     return render(request, 'index.html', {
-        'character_list': characters_list,
+        'character_list': character_list,
     })
 
-def add(request):
-    races_list = Race.objects.all()
-    
-    return render(request, 'add.html', {
-        'races_list': races_list
-    })
+def add_character(request):
+    if request.method == "POST":
+        print('POST REQUEST')
+        form = AddCharacterForm(request.POST)
+        print(form.data)
+        
+        #int vars 
+        strength = int(form.data['strength'])
+        dexterity = int(form.data['dexterity'])
+        intelligence = int(form.data['intelligence'])
+        wisdom = int(form.data['wisdom'])
+        luck = int(form.data['luck'])
+        charisma = int(form.data['charisma'])
+        age = int(form.data['age'])
+        race_id = form.data['race']
 
-def addCharacter(request):
-    strength = request.POST.get('strength')
-    intelligence = request.POST.get('intelligence')
-    
-    statistics = Statistics.objects.create(
-        strength = strength,
-        dexterity = request.POST.get('dexterity'),
-        inteligence = intelligence,
-        wisdom = request.POST.get('wisdom'),
-        luck = request.POST.get('luck'),
-        charisma = request.POST.get('charisma')
-    )
+        #str vars
+        name = form.data['name']
+        story = form.data['story']
+        quote = form.data['quote']
+        sex = form.data['sex']
 
-    statistics.save()
+        with transaction.atomic():
+            print('starting the transaction...')
+            print('creating statistics')
+            statistics = Statistics.objects.create(
+                strength = strength,
+                dexterity = dexterity,
+                inteligence = intelligence,
+                wisdom = wisdom,
+                luck = luck,
+                charisma = charisma
+            )
 
-    condition = Condition.objects.create(
-        health = strength * 2,
-        max_health = strength * 2,
-        mana = intelligence * 2,
-        max_mana = intelligence * 2,
-        experience = 0,
-        max_experience = 100
-    )
-    
-    condition.save()
-    
-    race_name = request.POST.get('race')
+            print('saving statistics')
+            statistics.save()
+            print('saving statistics done')
+            
+            print('creating condition')
+            condition = Condition.objects.create(
+                health = strength * 2,
+                max_health = strength * 2,
+                mana = intelligence * 2,
+                max_mana = intelligence * 2,
+                experience = 0,
+                max_experience = 100
+            )
+            
+            print('saving condition')
+            condition.save()
+            print('saving condition done')
 
-    race = Race.objects.get(name = race_name)
-    
-    entity = Entity.objects.create(
-        name = request.POST.get('name'),
-        age = request.POST.get('age'),
-        level = 1,
-        quote = request.POST.get('quote'),
-        story = request.POST.get('story'),
-        sex = request.POST.get('sex'),
-        race_id = race.id,
-        statistics_id = statistics.id,
-        condition_id = condition.id
-    )
+            print('creating character')
+            character = Character.objects.create(
+                name = name,
+                age = age,
+                level = 1,
+                quote = quote,
+                story = story,
+                sex = sex,
+                race_id = race_id,
+                statistics_id = statistics.id,
+                condition_id = condition.id
+            )
+            print('saving character')
+            character.save()
+            print('saving character done')
 
-    entity.save()
-
-    character = Character.objects.create(
-        entity_ptr_id = entity.id
-    )
-
-    character.save()
-
-    return redirect('index')
-
-def characterDetails(request, pk):
+            print('transaction commited')
+            return redirect('index')
+    else:
+        print('GET REQUEST')
+        races_list = Race.objects.all()
+        return render(request, 'add.html', {
+            'races_list': races_list
+        })
+      
+def character_details(request, pk):
     entity = Entity.objects.get(id = pk)
     race = Race.objects.get(id = entity.race_id)
     condition = Condition.objects.get(id = entity.condition_id)
     statistics = Statistics.objects.get(id = entity.statistics_id)
-
+    skills = entity.skills.all()
     return render(request, 'character-details.html', {
         'character': entity,
         'race': race,
         'condition': condition,
         'statistics': statistics,
+        'skills': skills
     })
-def addSkill(request, characterId):
-    return render(request, 'add-skill.html')
+    
+def manage_skills(request, characterId):
+    character = Entity.objects.get(id=characterId)
+
+    skills = list(Skill.objects.all())
+    print('\nAll skills: ')
+    print(skills)
+
+    character_skills = character.skills.all()
+    print('\nCharacter skills')
+    print(character_skills)
+
+    print('Available skills:')
+    available_skills = list(Skill.objects.exclude(id__in=character_skills))
+    print(available_skills)
+    
+    return render(request, 'manage-skills.html', {
+        'available_skills': available_skills,
+        'character_skills': character_skills,
+        'character_id': characterId
+    })
+
+def assign_skills(request):
+    print('assign skills here')
+    
+    if request.method == 'POST':
+        form = NameForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data["your_name"])
+      
+
+    

@@ -19,9 +19,16 @@
                     <div class="card border-secondary" style="margin:10px">
                         <div class="card-body" style="height:300px">
                             <h4 class="card-title">Skills: </h4>
-                            <p class="card-text">Fire Ball</p>
-                            <p class="card-text">Thunder Bolt</p>
-                            <p class="card-text">Ice Spear</p>
+                            {% for skill in skills %}
+                                <p class="card-text">{{skill.name}}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="card-body">
+                            <a href="/rpg/manage-skills/{{character.id}}" class="card-link">
+                               <div class="add-redirect">
+                                    +
+                               </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -94,12 +101,25 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card-body">
-                        <blockquote class="blockquote">
-                            <p class="mb-0 text-muted">{{character.quote}}</p>
-                            <p class="mb-0">{{character.backStory}}</p>
-                        </blockquote>
+                    <div class="card border-secondary" style="margin: 10px"> 
+                        <div class="card-body">
+                            <blockquote class="blockquote">
+                                <p class="mb-0 text-muted">{{character.quote}}</p>
+                            </blockquote>
+                            <blockquote class="blockquote">
+                                <p class="mb-0">{{character.story}}</p>
+                            </blockquote>
+                        </div>
                     </div>
+                    <div class="card border-secondary" style="margin: 10px">
+                        <div class="card-body border-secondary">
+                            <div class="card-title"> <h4> {{character.race.name}} </h4> </div>
+                            <blockquote class="blockquote">
+                                <p class="mb-0">{{character.race.backstory}}</p>
+                            </blockquote>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>       

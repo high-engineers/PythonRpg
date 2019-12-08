@@ -40,6 +40,8 @@ class Skill(models.Model):
     multiplier = models.IntegerField(default=0)
     class Meta:
         db_table = 'Skill'
+    def __str__(self):
+        return self.name
 
 class Entity(models.Model):
     skills = models.ManyToManyField('Skill')
@@ -54,6 +56,8 @@ class Entity(models.Model):
     sex = models.CharField(max_length=8)
     class Meta:
         db_table = 'Entity'
+    def __str__(self):
+        return self.name
 
 class Npc(Entity, models.Model):
     class Meta:
