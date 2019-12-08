@@ -20,7 +20,7 @@
                     <th>Race</th>
                     <th>Level</th>
                 </tr>
-                {% if characters_list %}
+                {% if character_list %}
                 {% for character in character_list %}
                 
                     <tr class="base-table-row row-clickable" data-href="{% url 'character-details' pk=character.id %}">
@@ -29,6 +29,7 @@
                         <td>{{character.level}}</td>
                     </tr>                         
                 {%endfor%}
+                {%endif%}
             <table>
             <a href="/rpg/add">
                 <div class="add-redirect">

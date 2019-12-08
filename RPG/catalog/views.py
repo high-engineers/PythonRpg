@@ -79,7 +79,7 @@ def characterDetails(request, pk):
     race = Race.objects.get(id = entity.race_id)
     condition = Condition.objects.get(id = entity.condition_id)
     statistics = Statistics.objects.get(id = entity.statistics_id)
-    skills = character.skills.all()
+    skills = entity.skills.all()
 
     return render(request, 'character-details.html', {
         'character': entity,
