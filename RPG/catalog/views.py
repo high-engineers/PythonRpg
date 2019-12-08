@@ -136,6 +136,38 @@ def assign_skills(request):
         form = NameForm(request.POST)
         if form.is_valid():
             print(form.cleaned_data["your_name"])
+
+def add_skill(request):
+    if request.method == "POST":
+        print("POST REQUEST")
+        form = AddSkillForm(request.POST)
+        print(form.data)
+
+        #int vars
+        mana_cost = int(form.data["mana_cost"])
+        damage = int(form.data["damage"])
+        multiplier = int(form.data["multiplier"])
+
+        #str vars
+        name = form.data["name"]
+        description = form.data["description"]
+
+        print("Creating skill")
+        skill = Skill.objects.create(
+            name = name,
+            description = description,
+            mana_cost = mana_cost,
+            damage = damage,
+            multiplier = multiplier
+        )
+        print("saving skill")
+        skill.save()
+        print("saving skill done")
+        return redirect("add-skill")
+    else:
+        print("GET REQUEST")
+        return render(request, "add-skill.html")
+        
       
 
     

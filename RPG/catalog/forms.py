@@ -16,3 +16,11 @@ class AddCharacterForm(forms.Form):
     charisma = forms.IntegerField(label='Charisma')
     quote = forms.CharField(label='Quote')
     story = forms.CharField(label='Story')
+
+class AddSkillForm(forms.Form):
+    name = forms.CharField()
+    description = forms.CharField()
+    mana_cost = forms.IntegerField()
+    damage = forms.IntegerField()
+    multiplier = forms.IntegerField()
+    
