@@ -10,7 +10,7 @@ from .forms import *
 
 from catalog.models import Character, Entity, Race, Statistics, Condition, Skill
 from django.db import transaction
-
+import json
 def index(request):
     character_list = Entity.objects.all()
     return render(request, 'index.html', {
@@ -133,9 +133,23 @@ def assign_skills(request):
     print('assign skills here')
     
     if request.method == 'POST':
-        form = NameForm(request.POST)
-        if form.is_valid():
-            print(form.cleaned_data["your_name"])
+        form = AssignSkillsForm(request.POST)
+        print(form.data)
+        selected_skills = form.data["selected_skills"]
+        print(selected_skills)
+        print(type(selected_skills))
+        selected_skills = list(map(int, json.loads(selected_skills)))
+        print(type(selected_skills))
+        character_id = form.data["character_id"]
+        character = Entity.objects.get(id=character_id)
+        with transaction.atomic():
+            character.skills.clear()
+            new_skills = Skill.objects.filter(id__in=selected_skills)
+            print(new_skills)   
+            character.skills.set(new_skills)
+            character.save()
+        return redirect("character-details", character_id)
+    return redirect("index")
 
 def add_skill(request):
     if request.method == "POST":

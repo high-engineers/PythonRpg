@@ -13,7 +13,7 @@
     </head>
     <body>
         <div class="container">
-            {% comment %} <div class="col-md-4" style="float: left;" id="skills-available-container">
+             <div class="col-md-4" style="float: left;" id="skills-available-container">
                 {% for skill in available_skills %}
                 <div id="{{skill.id}}" class="skill-row-available">
                     <p>{{skill.name}}</p>
@@ -21,10 +21,22 @@
                 {%endfor%}
             </div>
             <div class="col-md-4" style="float: left; text-align:center;"> 
+                
                 <button class="btn btn-primary" id="left-to-right-button"> > </button> 
                 <br/>
                 <br/>
                 <button class="btn btn-primary" id="right-to-left-button"> < </button>
+                <br><br><br>
+                <form action="{% url 'assign-skills' %}" method="post" id="assign-form">
+                    <input type="hidden" value="{{character_id}}" name="character_id" id="character_id">
+                    <input type="submit" value="OK">
+                </form>
+
+                <a href="{% url 'add-skill' %} ">
+                    <div class="add-redirect">
+                        +
+                    </div>
+                </a>
             </div>
             <div class="col-md-4" style="float: left;" id="skills-assigned-container">
                 {% for skill in character_skills %}
@@ -32,20 +44,7 @@
                     <p>{{skill.name}}</p>
                 </div>
                 {%endfor%}
-            </div> {% endcomment %}
-            {% comment %} <form action="{% url 'assign-skills' %}" method="post">
-
-                <input type="text" id="twojaStara">
-                <input type="submit" class="btn btn-secondary" value="OK" />
-                
-                   
-              
-            </form> {% endcomment %}
-            <form action="{% url 'assign-skills' %}" method="post">
-                <label for="your_name">Your name: </label>
-                <input id="your_name" type="text" name="your_name" value="XD">
-                <input type="submit" value="OK" id="ok-button">
-            </form>
+            </div>
         </div>
     </body>
 
@@ -82,31 +81,23 @@
                 toAdd.removeClass("skill-row-assigned").addClass("skill-row-available").removeClass("clicked");
                 skillsAvailable.append(toAdd);
             });
-            
-            /* $("#ok-button").click(function(e)
+            $("#assign-form").on("submit", function()
             {
-                {% comment %} var idsTable = [];
+                var idsTable = [];
                 $('.skill-row-assigned').each(function()
                 {
                     var $this = $(this);
                     idsTable.push($this.attr('id'));
                 });
                 console.log(idsTable);
-                var characterId = "{{character_id}}";
-                console.log("MEINE: " + characterId); {% endcomment %}
-                var postData = {
-                    your_name: "Twoja stara"
-                };
-                console.log(JSON.stringify(postData));
-                $.ajax({
-                    type: "POST",
-                    url:'{% url "assign-skills" %}',
-                    data: JSON.stringify(postData),
-                    dataType: "json"
-                    content-type: "application/json"
-                });
-                
-            }); */
+                $("<input />").attr("type", "hidden")
+                .attr("name", "selected_skills")
+                .attr("id", "selected_skills")
+                .attr("value", JSON.stringify(idsTable))
+                .appendTo("#assign-form");
+                return true;
+            })
+
         });
     </script>
 
