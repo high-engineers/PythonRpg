@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^manage-skills/(?P<characterId>[0-9]+)$', views.manage_skills, name='manage-skills'),
     url(r'^assign-skills$', views.assign_skills, name='assign-skills'),
     url(r'^add-skill$', views.add_skill, name='add-skill'),
+    url(r'^skill-details/(?P<skill_id>[0-9]+)$', views.skill_details, name='skill-details'),
 ]

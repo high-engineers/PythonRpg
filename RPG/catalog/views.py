@@ -181,7 +181,13 @@ def add_skill(request):
     else:
         print("GET REQUEST")
         return render(request, "add-skill.html")
-        
+
+def skill_details(request, skill_id):
+    skill = Skill.objects.get(id=skill_id)
+    return render(request, "skill-details.html", {
+        "skill": skill
+    })
+
       
 
     
